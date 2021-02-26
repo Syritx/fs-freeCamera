@@ -1,4 +1,4 @@
-﻿module Main
+module Main
 open System
 
 open OpenTK.Windowing.Common
@@ -15,9 +15,9 @@ type Scene(GWS, NWS) =
 
     let vertices = [|
         // R     G     B
-        -0.5f; -0.5f; 0.0f; 1.0f; 0.0f; 0.0f;
-         0.5f; -0.5f; 0.0f; 0.0f; 1.0f; 0.0f;
-         0.0f;  0.5f; 1.0f; 0.0f; 0.0f; 1.0f
+        -1.5f; -1.5f; 0.0f; 1.0f; 0.0f; 0.0f;
+         1.5f; -1.5f; 0.0f; 0.0f; 1.0f; 0.0f;
+         0.0f;  1.5f; 1.5f; 0.0f; 0.0f; 1.0f
     |]
 
     let shader = new Shader("src/glsl/vertexShader.glsl", "src/glsl/fragmentShader.glsl")
@@ -65,8 +65,9 @@ type Scene(GWS, NWS) =
                                     position.Y - eye.Y,
                                     position.Z - eye.Z) * speed
             printfn "s"
+        else printfn ""
 
-        else if (this.IsKeyDown(Keys.A)) then 
+        if (this.IsKeyDown(Keys.A)) then 
             position <- new Vector3(position.X - right.X,
                                     position.Y - right.Y,
                                     position.Z - right.Z) * speed
@@ -76,8 +77,7 @@ type Scene(GWS, NWS) =
             position <- new Vector3(position.X + right.X,
                                     position.Y + right.Y,
                                     position.Z + right.Z) * speed
-            printfn "a"
-            
+            printfn "a" 
         else printfn ""
 
     override this.OnRenderFrame(e) =
